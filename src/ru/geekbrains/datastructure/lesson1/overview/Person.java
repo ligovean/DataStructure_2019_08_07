@@ -1,4 +1,4 @@
-package ru.geekbrains.datastructure.overview;
+package ru.geekbrains.datastructure.lesson1.overview;
 
 import java.util.Objects;
 
