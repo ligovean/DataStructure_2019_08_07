@@ -1,7 +1,5 @@
 package ru.geekbrains.datastructure.lesson2.array;
 
-import java.io.Serializable;
-
 public class SortedArrayImpl<E extends Object & Comparable<? super E>> extends ArrayImpl<E> {
 
     //O(N)

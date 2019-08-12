@@ -143,7 +143,7 @@ public class ArrayImpl<E extends Object & Comparable<? super E>> implements Arra
         for (int i = 1; i < size; i++) {
             E temp = data[i];
             int in = i;
-            while (in > 0 && data[in - 1].compareTo(temp) >= 0) {
+            while (in > 0 && data[in - 1].compareTo(temp) > 0) {
                 data[in] = data[in - 1];
                 in--;
             }
@@ -156,4 +156,8 @@ public class ArrayImpl<E extends Object & Comparable<? super E>> implements Arra
         return Arrays.toString(data);
     }
 
+
+    E[] getArray() {
+        return Arrays.copyOf(data, size);
+    }
 }
