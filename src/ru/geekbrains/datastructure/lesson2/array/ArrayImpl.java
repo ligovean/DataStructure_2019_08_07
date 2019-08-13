@@ -82,12 +82,10 @@ public class ArrayImpl<E extends Object & Comparable<? super E>> implements Arra
         return -1;
     }
 
-    @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
-    @Override
     public int size() {
         return size;
     }
