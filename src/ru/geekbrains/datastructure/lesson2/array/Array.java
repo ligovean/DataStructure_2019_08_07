@@ -1,8 +1,7 @@
 package ru.geekbrains.datastructure.lesson2.array;
 
-import ru.geekbrains.datastructure.ICollection;
 
-public interface Array<E> extends ICollection {
+public interface Array<E> {
 
     int DEFAULT_CAPACITY = 16;
 
@@ -13,6 +12,10 @@ public interface Array<E> extends ICollection {
 
     boolean contains(E value);
     int indexOf(E value);
+
+    int size();
+
+    boolean isEmpty();
 
     void display();
 

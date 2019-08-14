@@ -4,28 +4,34 @@ import ru.geekbrains.datastructure.lesson2.array.Array;
 import ru.geekbrains.datastructure.lesson2.array.ArrayImpl;
 import ru.geekbrains.datastructure.lesson2.array.SortedArrayImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class ConcurrencyMainDZ {
-
-    private static final int ARRAY_CAPACITY = 100_000;
+    private static final int ARRAY_CAPACITY = 10_000;
 
 
     public static final int MAX_VALUE = 10_000;
 
     public static void main(String[] args) throws InterruptedException {
-//        Supplier<Array> constructor = ArrayImpl::new;
-//        Supplier<Array> constructor1 = () -> new ArrayImpl();
+//        Supplier<Array> constructor = ArrayImpl<Integer>::new;
+//        Function<Integer, Array> constructor1 = new Function<Integer, Array>() {
+//            @Override
+//            public Array apply(Integer initialCapacity) {
+//                return new ArrayImpl<Comparable>(initialCapacity);
+//            }};
 
         Supplier<Array> constructor = SortedArrayImpl::new;
 
-        Array arr1 = createArray(constructor);// Array arr1 = new ArrayImpl();
+        Array<Integer> arr1 = createArray(constructor);// Array arr1 = new ArrayImpl();
+
+//        Consumer<Integer> addMethod = arr1::add;
 
         Array arr2 = createArray(constructor);
         Array arr3 = createArray(constructor);
@@ -92,8 +98,8 @@ public class ConcurrencyMainDZ {
 //        };
     }
 
-    private static Array createArray(Supplier<Array> factory) {
-        return factory.get();//new ArrayImpl()
+    private static <T> Array<T> createArray(Supplier<Array> factory) {
+        return factory.<T>get();//new ArrayImpl()
     }
 
 }

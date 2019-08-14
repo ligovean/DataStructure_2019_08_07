@@ -10,8 +10,8 @@ public class Main2 {
 
     public static void main(String[] args) {
 //        testArray();
-        Array<Integer> array = new ArrayImpl<>(5);
-//        Array<Integer> array = new SortedArrayImpl<>();
+//        Array<Integer> array = new ArrayImpl<>(5);
+        Array<Integer> array = new SortedArrayImpl<>();
         array.add(2);
         array.add(3);
         array.add(1);
