@@ -10,7 +10,11 @@ public class Main3 {
 
     public static void main(String[] args) {
 //        testStack();
-//        Queue<Integer> queue = new QueueImpl<>(5);
+        testQueue();
+    }
+
+    private static void testQueue() {
+        //        Queue<Integer> queue = new QueueImpl<>(5);
         Queue<Integer> queue = new PriorityQueue<>(5);
         queue.insert(3);
         queue.insert(1);

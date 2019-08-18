@@ -2,14 +2,14 @@ package ru.geekbrains.datastructure.lesson3.queue;
 
 public class QueueImpl<E> implements Queue<E> {
 
-    private static final int DEFAULT_TAIL = -1;
-    private static final int DEFAULT_HEAD = 0;
+    public static final int DEFAULT_TAIL = -1;
+    public static final int DEFAULT_HEAD = 0;
 
     protected final E[] data;
     protected int size;
 
-    private int tail;
-    private int head;
+    protected int tail;
+    protected int head;
 
     @SuppressWarnings("unchecked")
     public QueueImpl(int maxCapacity) {
