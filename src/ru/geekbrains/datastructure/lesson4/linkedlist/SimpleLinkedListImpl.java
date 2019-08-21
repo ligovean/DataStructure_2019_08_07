@@ -1,6 +1,6 @@
 package ru.geekbrains.datastructure.lesson4.linkedlist;
 
-import ru.geekbrains.datastructure.lesson3.ICollection;
+import ru.geekbrains.datastructure.lesson4.iterator.ListIterator;
 
 import java.util.Iterator;
 
@@ -112,6 +112,84 @@ public class SimpleLinkedListImpl<E> implements LinkedList<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new LinkedListIterator<E>(this);
+    }
+
+    @SuppressWarnings("unchecked")
+    private static class LinkedListIterator<E> implements ListIterator<E> {
+
+        private SimpleLinkedListImpl list;
+
+        private Node<E> current;
+        private Node<E> previous;
+
+        public LinkedListIterator(SimpleLinkedListImpl list) {
+            this.list = list;
+            reset();
+        }
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public E next() {
+            E nextValue = current.value;
+            previous = current;
+            current = current.next;
+            return nextValue;
+        }
+
+        @Override
+        public void remove() {
+            if (previous == null){
+                list.firstElement = current.next;
+                reset();
+            } else {
+                previous.next = current.next;
+                if ( !hasNext() ) {
+                    reset();
+                } else {
+                    current = current.next;
+                }
+            }
+        }
+
+        @Override
+        public void reset() {
+            current = list.firstElement;
+            previous = null;
+        }
+
+        @Override
+        public void insertBefore(E value) {
+            Node newItem = new Node(value);
+            if(previous == null) {
+                newItem.next = list.firstElement;
+                list.firstElement = newItem;
+                reset();
+            }
+            else {
+                newItem.next = previous.next;
+                previous.next = newItem;
+                current = newItem;
+            }
+
+        }
+
+        @Override
+        public void insertAfter(E value) {
+            Node newItem = new Node(value);
+            if (list.isEmpty()){
+                list.firstElement = newItem;
+                current = newItem;
+            } else {
+                newItem.next = current.next;
+                current.next = newItem;
+                next();
+            }
+        }
+
     }
 }
